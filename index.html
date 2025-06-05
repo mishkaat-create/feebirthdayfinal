@@ -2,41 +2,201 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Birthday, Fee!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday, Fee! 🎉💜</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Playfair+Display&display=swap');
+
     body {
-      background-color: #f3e8ff;
-      font-family: 'Georgia', serif;
+      background: linear-gradient(135deg, #d8b4fe, #a78bfa);
+      font-family: 'Playfair Display', serif;
       color: #3b0764;
-      text-align: center;
-      padding: 40px;
+      margin: 0; padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      user-select: none;
+    }
+    h1, h2 {
+      font-family: 'Indie Flower', cursive;
+      margin-bottom: 0.3em;
     }
     h1 {
-      font-size: 3em;
-      color: #6b21a8;
+      font-size: 3.8em;
+      color: #7c3aed;
+      text-shadow: 1px 1px 6px #a78bfa;
     }
-    .box {
-      background-color: #fff;
-      padding: 2em;
-      margin: auto;
-      max-width: 700px;
+    .container {
+      background: white;
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
+      max-width: 720px;
+      width: 100%;
+      padding: 30px 40px;
+      margin-bottom: 35px;
+      text-align: center;
+      animation: fadeIn 1.5s ease forwards;
+    }
+    p {
+      font-size: 1.3em;
+      margin: 10px 0 20px 0;
+      line-height: 1.4;
+      color: #5b21b6;
+    }
+    button {
+      background: #7c3aed;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 15px 28px;
+      font-size: 1.1em;
+      cursor: pointer;
+      margin: 12px 6px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 6px 12px rgba(124, 58, 237, 0.5);
+    }
+    button:hover {
+      background: #9d4edd;
+      transform: scale(1.07);
+      box-shadow: 0 8px 18px rgba(157, 78, 221, 0.7);
+    }
+    .answer {
+      margin-top: 14px;
+      font-weight: 600;
+      color: #7c3aed;
+      font-size: 1.2em;
+      min-height: 2em;
+      user-select: text;
+    }
+    img {
+      max-width: 100%;
       border-radius: 20px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      margin-top: 18px;
+      box-shadow: 0 10px 20px rgba(124, 58, 237, 0.4);
     }
-    .emoji {
-      font-size: 2em;
+    /* Special message */
+    #secret-message {
+      font-size: 1.6em;
+      font-family: 'Indie Flower', cursive;
+      color: #a855f7;
+      margin-top: 20px;
+      opacity: 0;
+      transition: opacity 1.8s ease;
+      user-select: text;
+    }
+    #secret-message.visible {
+      opacity: 1;
+    }
+    /* Animations */
+    @keyframes fadeIn {
+      0% {opacity: 0; transform: translateY(20px);}
+      100% {opacity: 1; transform: translateY(0);}
     }
   </style>
 </head>
 <body>
-  <div class="box">
-    <h1>Happy Birthday, Momo!</h1>
-    <p class="emoji">🎉🎂💜</p>
-    <p>To the kindest soul, my pookie bear, my Fee –</p>
-    <p>You’ve filled our lives with your poetry, art, silliness, and sweetness (like all the Indian mithais you love 🍬)</p>
-    <p>Challenge accepted? Always. 😉</p>
-    <p>This page is just the beginning... more surprises ahead 💌</p>
+
+  <div class="container" style="animation-delay: 0.2s;">
+    <h1>Happy Birthday, Momo! 🎉🎂💜</h1>
+    <p>For my pookie bear, the king of silliness and poetry – here’s a special page packed with fun just for you!</p>
   </div>
+
+  <!-- Quiz Section -->
+  <div class="container" style="animation-delay: 0.5s;">
+    <h2>Quiz Time! 🧠</h2>
+    <p>1. What is Fee’s favorite color?</p>
+    <button onclick="checkAnswer('quiz1', 'a')">a) Blue</button>
+    <button onclick="checkAnswer('quiz1', 'b')">b) Purple</button>
+    <button onclick="checkAnswer('quiz1', 'c')">c) Green</button>
+    <p id="quiz1-result" class="answer"></p>
+
+    <p>2. Which traditional Indian sweet does Fee love the most?</p>
+    <button onclick="checkAnswer('quiz2', 'a')">a) Gulab Jamun</button>
+    <button onclick="checkAnswer('quiz2', 'b')">b) Rasgulla</button>
+    <button onclick="checkAnswer('quiz2', 'c')">c) Jalebi</button>
+    <p id="quiz2-result" class="answer"></p>
+  </div>
+
+  <!-- Riddles Section -->
+  <div class="container" style="animation-delay: 0.8s;">
+    <h2>Riddle Me This 🤔</h2>
+    <div>
+      <p><em>What has keys but can't open locks?</em></p>
+      <button onclick="toggleRiddleAnswer('riddle1')">Show Answer</button>
+      <p id="riddle1" class="answer" style="display:none;">A piano! 🎹</p>
+    </div>
+    <div style="margin-top: 25px;">
+      <p><em>What comes once in a minute, twice in a moment, but never in a thousand years?</em></p>
+      <button onclick="toggleRiddleAnswer('riddle2')">Show Answer</button>
+      <p id="riddle2" class="answer" style="display:none;">The letter "M". 🕵️‍♂️</p>
+    </div>
+  </div>
+
+  <!-- Meme Section -->
+  <div class="container" style="animation-delay: 1.1s;">
+    <h2>Memes & Cat Memes 😹</h2>
+    <button onclick="showNextMeme()">Show me a meme!</button>
+    <div id="meme-container"></div>
+  </div>
+
+  <!-- Secret Message -->
+  <div class="container" style="animation-delay: 1.4s;">
+    <h2>Shhh... Secret Message 💌</h2>
+    <button onclick="revealSecret()">Click to reveal!</button>
+    <p id="secret-message">Happy Birthday, my love! You’re my inspiration, my poetry, and my forever. Love you to the moon and back, Fee! 💜🌙✨</p>
+  </div>
+
+<script>
+  // Quiz answers correct keys
+  const correctAnswers = {
+    quiz1: 'b',
+    quiz2: 'a'
+  };
+
+  function checkAnswer(quizId, choice) {
+    const result = document.getElementById(`${quizId}-result`);
+    if (choice === correctAnswers[quizId]) {
+      result.textContent = "Correct! 🎉";
+      result.style.color = '#7c3aed';
+    } else {
+      result.textContent = "Oops! Try again.";
+      result.style.color = '#d946ef';
+    }
+  }
+
+  function toggleRiddleAnswer(id) {
+    const el = document.getElementById(id);
+    if (el.style.display === 'none') {
+      el.style.display = 'block';
+    } else {
+      el.style.display = 'none';
+    }
+  }
+
+  // Memes array
+  const memes = [
+    'https://i.imgur.com/JfPpwOA.jpg', // classic cat meme 1
+    'https://i.imgur.com/3Q9Xl6B.jpg', // cat with sunglasses
+    'https://i.imgur.com/uM5x4uU.jpg', // funny cat and dog
+    'https://i.imgur.com/MTYI6Qp.jpg', // meme with text
+    'https://i.imgur.com/5wV3g2r.jpg'  // cat tired meme
+  ];
+  let memeIndex = 0;
+
+  function showNextMeme() {
+    const container = document.getElementById('meme-container');
+    container.innerHTML = `<img src="${memes[memeIndex]}" alt="Funny meme" />`;
+    memeIndex = (memeIndex + 1) % memes.length;
+  }
+
+  // Secret message reveal
+  function revealSecret() {
+    const msg = document.getElementById('secret-message');
+    msg.classList.add('visible');
+  }
+</script>
+
 </body>
 </html>
